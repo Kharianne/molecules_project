@@ -1,0 +1,12 @@
+# Exclude sqlitedb files
+*.sqlite3
+
+# Python files and env
+__pycache__
+venv
+
+# Exclude idea (should be in global gitignore usually)
+.idea
+
+# Exlude .env file
+.env
