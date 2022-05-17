@@ -14,6 +14,13 @@ class Molecule(models.Model):
     collection = models.ForeignKey(Collection, on_delete=models.SET_NULL, null=True)
     image = models.ImageField()
 
+class Company(models.Model):
+
+    name = models.CharField(max_length=50)
+    identification_number = models.CharField(max_length=100)
+
+    class Meta:
+        verbose_name_plural = 'Companies'
 
 class User(models.Model):
     primary_company = models.ForeignKey(Company, on_delete=models.SET_NULL, null=True)
@@ -21,5 +28,3 @@ class User(models.Model):
     last_name = models.CharField(max_length=100)
     phone_number = models.CharField(max_length=20)
     email = models.CharField(max_length=50)
-
-
