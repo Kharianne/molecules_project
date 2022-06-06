@@ -1,5 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import TemplateView, ListView
+from django.views.generic import TemplateView, ListView, DetailView
 
 from molecule_admin.models import Molecule, Collection
 
@@ -18,11 +18,9 @@ class MoleculeListView(LoginRequiredMixin, ListView):
         context['collections'] = Collection.objects.all().order_by('name')
         search_query = self.request.GET.get('search')
         context['search'] = search_query
-        print(context)
         return context
 
     def get_queryset(self):
-        print(self.request.GET)
         filter_collection = self.request.GET.getlist('collection')
         search_query = self.request.GET.get('search')
         if filter_collection and search_query:
@@ -37,3 +35,8 @@ class MoleculeListView(LoginRequiredMixin, ListView):
                 .order_by('name')
         else:
             return Molecule.objects.all().order_by('name')
+
+
+class MoleculeDetailView(LoginRequiredMixin, DetailView):
+    model = Molecule
+    template_name = "molecules/molecule_detail.html"

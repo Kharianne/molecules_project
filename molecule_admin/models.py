@@ -24,6 +24,10 @@ class Molecule(models.Model):
             )
         ]
 
+    @property
+    def collections(self):
+        return ', '.join([c.name for c in self.collection.all()])
+
 
 """
 TODO: Create a model named Profile with following fields:

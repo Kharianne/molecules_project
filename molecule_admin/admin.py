@@ -24,10 +24,6 @@ class MoleculeAdmin(admin.ModelAdmin):
         form.base_fields['collection'].widget.can_add_related = False
         return form
 
-    # Allows to add collections to list_display
-    def collections(self, obj):
-        return ", ".join([p.name for p in obj.collection.all()])
-
 
 class CollectionAdmin(admin.ModelAdmin):
     list_display = ["name"]
