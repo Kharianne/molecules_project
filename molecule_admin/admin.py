@@ -10,7 +10,7 @@ class MoleculeAdmin(admin.ModelAdmin):
     fields = ["name", "smiles", "inchi_key", "collection", "image"]
     list_display = ["name", "inchi_key", "collections"]
     list_filter = ["collection"]
-    search_fields = ["name", "collection"]
+    search_fields = ["name", "collection__name"]
 
     # Changes multiple select to CheckboxSelectMultiple
     formfield_overrides = {
