@@ -8,5 +8,9 @@ venv
 # Exclude idea (should be in global gitignore usually)
 .idea
 
-# Exlude .env file
+# Exclude .env file
 .env
+
+# Exclude static and media files
+images
+static
