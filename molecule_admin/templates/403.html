@@ -1,0 +1,21 @@
+{% extends "index.html" %}
+{% block content %}
+
+{% if exception %}
+<div class="d-flex justify-content-center mb-3 alert alert-danger alert-dismissible fade show"
+     role="alert">
+    {{ exception }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert"
+            aria-label="Close"></button>
+</div>
+{% else %}
+<div class="d-flex justify-content-center mb-3 alert alert-danger alert-dismissible fade show"
+     role="alert">
+    It seems that you do not have proper permissions to do that.
+    <button type="button" class="btn-close" data-bs-dismiss="alert"
+            aria-label="Close"></button>
+</div>
+{% endif %}
+
+
+{% endblock %}

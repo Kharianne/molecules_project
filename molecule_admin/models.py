@@ -1,5 +1,5 @@
+from django.contrib.auth.models import User
 from django.db import models
-from django.db.models.constraints import UniqueConstraint
 
 
 class Collection(models.Model):
@@ -27,6 +27,12 @@ class Molecule(models.Model):
     @property
     def collections(self):
         return ', '.join([c.name for c in self.collection.all()])
+
+
+class Note(models.Model):
+    note_text = models.TextField()
+    molecule = models.ForeignKey(Molecule, on_delete=models.PROTECT)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
 """

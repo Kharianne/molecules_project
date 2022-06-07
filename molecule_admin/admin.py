@@ -1,9 +1,8 @@
 from django.contrib import admin
-from django.contrib import admin
 from django.db import models
 from django.forms import CheckboxSelectMultiple
 
-from molecule_admin.models import Molecule, Collection
+from molecule_admin.models import Molecule, Collection, Note
 
 
 class MoleculeAdmin(admin.ModelAdmin):
@@ -33,4 +32,4 @@ class CollectionAdmin(admin.ModelAdmin):
 
 admin.site.register(Molecule, MoleculeAdmin)
 admin.site.register(Collection, CollectionAdmin)
-
+admin.site.register(Note)
