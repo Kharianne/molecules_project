@@ -2,29 +2,32 @@
 {% block content %}
 <div class="container">
 
-        <div class="d-flex justify-content-center mt-3 mb-3">
-            <h3>{{ object.name|safe }}</h3>
-        </div>
+    <div class="d-flex justify-content-center mt-3 mb-3">
+        <h3>{{ object.name|safe }}</h3>
+    </div>
 
-        <div class="d-flex justify-content-center mt-3 mb-3">
-            <img src="{{ object.image.url }}" alt="img">
-        </div>
-        <div class="d-flex justify-content-center mt-3 mb-3">
-            <table  class="table">
-                <tr>
-                    <th>Smiles</th>
-                    <td>{{ object.smiles}}</td>
-                </tr>
-                <tr>
-                    <th>Inchi key</th>
-                    <td>{{ object.inchi_key}}</td>
-                </tr>
-                <tr>
-                    <th>Collections</th>
-                    <td>{{ object.collections }}</td>
-                </tr>
-            </table>
-        </div>
+    <div class="d-flex justify-content-center mt-3 mb-3">
+        <img src="{{ object.image.url }}" alt="img">
+    </div>
+    <div class="d-flex justify-content-center mt-3 mb-3">
+        <table class="table">
+            <tr>
+                <th>Smiles</th>
+                <td>{{ object.smiles}}</td>
+            </tr>
+            <tr>
+                <th>Inchi key</th>
+                <td>{{ object.inchi_key}}</td>
+            </tr>
+            <tr>
+                <th>Collections</th>
+                <td>{{ object.collections }}</td>
+            </tr>
+        </table>
     </div>
 </div>
+</div>
+{% include "notes/note_list.html" %}
 {% endblock %}
+
+
