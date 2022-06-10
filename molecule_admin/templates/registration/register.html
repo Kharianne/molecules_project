@@ -1,0 +1,15 @@
+{% extends "index.html" %}
+{% block content %}
+<div class="d-flex justify-content-center mt-3 mb-3">
+    <h3>Registration form</h3>
+    </div>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+        <div class="d-flex justify-content-center mt-3 mb-3">
+            <button type="submit" class="btn btn-primary">Register</button>
+        </div>
+        </form>
+
+</div>
+{% endblock %}
