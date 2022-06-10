@@ -1,7 +1,13 @@
+#from django.contrib.auth import authenticate, login
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import TemplateView, ListView, DetailView
+from django.contrib.messages.views import SuccessMessageMixin
+#from django.contrib.auth.views import LoginView
+from django.views.generic import TemplateView, ListView, DetailView, UpdateView, CreateView
+from django.urls import reverse_lazy
+from django.shortcuts import render
 
-from molecule_admin.models import Molecule, Collection
+from molecule_admin.forms import RegisterUserForm, UserForm
+from molecule_admin.models import Molecule, Collection, Profile, User
 
 
 class IndexView(TemplateView):
@@ -40,3 +46,35 @@ class MoleculeListView(LoginRequiredMixin, ListView):
 class MoleculeDetailView(LoginRequiredMixin, DetailView):
     model = Molecule
     template_name = "molecules/molecule_detail.html"
+
+
+class RegisterView(CreateView):
+    form_class = RegisterUserForm
+    template_name = "registration/register.html"
+    success_url = reverse_lazy("profile_update")
+    success_message = "User was created successfully."
+
+    def get_object(self, queryset=None):
+        return self.request.user.profile
+
+
+    def post(self, request, *args, **kwargs):
+        user = super().post()
+        return user
+
+
+class ProfileLoginView(TemplateView, LoginRequiredMixin):
+    model = User
+    template_name = "registration/login.html"
+    fields = ["name", "password"]
+    success_url = reverse_lazy("index")
+
+
+class ProfileUpdateView(LoginRequiredMixin, UpdateView, SuccessMessageMixin):
+    form_class = UserForm
+    #fields = ["name", "surname", "institution"]
+    template_name = "profiles/profile_update.html"
+    success_url = reverse_lazy("index")
+
+    def get_object(self, queryset=None):
+        return self.request.user.profile

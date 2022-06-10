@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.db import models
 from django.forms import CheckboxSelectMultiple
 
-from molecule_admin.models import Molecule, Collection
+from molecule_admin.models import Molecule, Collection, Profile
 
 
 class MoleculeAdmin(admin.ModelAdmin):
@@ -30,7 +30,13 @@ class CollectionAdmin(admin.ModelAdmin):
     list_filter = ["name"]
     search_fields = ["name"]
 
+class UserAdmin(admin.ModelAdmin):
+    #fields = ["user", "institution", "name", "surname"]
+    list_display = ["user", "name", "surname", "institution"]
+    list_filter = ["institution"]
+    search_fields = ["user", "name", "surname"]
+
 
 admin.site.register(Molecule, MoleculeAdmin)
 admin.site.register(Collection, CollectionAdmin)
-
+admin.site.register(Profile, UserAdmin)

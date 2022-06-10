@@ -16,6 +16,15 @@
         }
     </style>
 </head>
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert {{ message.tags }}" role="alert">
+    {{ message }}
+</div>
+{% endfor %}
+{% endif %}
+
 <body>
 <nav class="navbar navbar-expand-sm bg-light">
     <div class="container-fluid">
