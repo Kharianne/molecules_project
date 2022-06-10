@@ -57,17 +57,6 @@ class RegisterView(CreateView):
     def get_object(self, queryset=None):
         return self.request.user.profile
 
-def register(request):
-    if request.method == 'POST':
-        form = UserForm(request.POST)
-        if form.is_valid():
-            form.save()
-        else:
-            form = UserForm()
-
-        context = {'form': form}
-        return render(request, 'users/register.html', context)
-
 
     def post(self, request, *args, **kwargs):
         user = super().post()
