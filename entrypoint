@@ -1,0 +1,10 @@
+#!/bin/sh
+set -eu
+
+python3 manage.py migrate
+python3 manage.py import_data data.csv
+
+python3 manage.py create_images images
+python3 manage.py collectstatic
+
+exec /usr/bin/gunicorn -w 8 molecule_project.wsgi
